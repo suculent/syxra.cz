@@ -1,1 +1,17 @@
-# syxra.cz
+version: "2"
+
+services:
+
+  web:
+    image: suculent/syxracz
+    ports:
+      - "80:7878"
+    read_only: true
+    restart: unless-stopped
+    labels:
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.enable=true"
+      - "traefik.port=7878"
+      - "traefik.backend=syxra-cz"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:syxra.cz"
