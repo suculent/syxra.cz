@@ -5,7 +5,7 @@ services:
   web:
     image: suculent/syxracz
     ports:
-      - "80:7878"
+      - 7878
     read_only: true
     restart: unless-stopped
     labels:
