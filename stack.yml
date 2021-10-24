@@ -6,12 +6,10 @@ services:
     image: suculent/syxracz
     ports:
       - 7878
-    read_only: true
-    restart: unless-stopped
     labels:
       - "traefik.frontend.entryPoints=http"
       - "traefik.enable=true"
       - "traefik.port=7878"
       - "traefik.backend=syxra-cz"
-      - "traefik.docker.network=web"
+      - "traefik.docker.network=traefik-public"
       - "traefik.frontend.rule=Host:syxra.cz"
