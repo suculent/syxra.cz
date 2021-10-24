@@ -5,11 +5,28 @@ services:
   web:
     image: suculent/syxracz
     ports:
-      - 80:30001
-    labels:
-      - "traefik.frontend.entryPoints=http"
-      - "traefik.enable=true"
-      - "traefik.backend=syxra-cz"
-      - "traefik.port=30001"
-      - "traefik.docker.network=traefik-public"
-      - "traefik.frontend.rule=Host:syxra.cz"
+      - 80
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.1'
+          memory: 8M
+        limits:
+          cpus: '0.2'
+          memory: 32M
+      labels:
+        - "traefik.http.services.thinx-console.loadbalancer.server.port=80"
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.constraint-label=traefik-public"
+
+        - "traefik.http.routers.syxra-http.rule=Host(`syxra.cz`)"
+        - "traefik.http.routers.syxra-http.entrypoints=http"
+        - "traefik.http.routers.syxra-http.middlewares=https-redirect"
+
+        - "traefik.http.routers.syxra-https.rule=Host(`syxra.cz`)"
+        - "traefik.http.routers.syxra-https.entrypoints=https"
+        - "traefik.http.routers.syxra-https.tls=true"
+        - "traefik.http.routers.syxra-https.tls.certresolver=le"
+
+        - swarmpit.service.deployment.autoredeploy=true
