@@ -26,11 +26,11 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik-public"
 
-        - "traefik.http.routers.syxra-http.rule=HostRegexp:`*.syxra.cz`"
+        - "traefik.http.routers.syxra-http.rule=HostRegexp(`syxra.cz`,`{subhost:[a-z]+}.syxra.cz`)"
         - "traefik.http.routers.syxra-http.entrypoints=http"
         - "traefik.http.routers.syxra-http.middlewares=https-redirect"
 
-        - "traefik.http.routers.syxra-https.rule=HostRegexp:`*.syxra.cz`"
+        - "traefik.http.routers.syxra-https.rule=HostRegexp(`syxra.cz`,`{subhost:[a-z]+}.syxra.cz`)"
         - "traefik.http.routers.syxra-https.entrypoints=https"
         - "traefik.http.routers.syxra-https.tls=true"
         - "traefik.http.routers.syxra-https.tls.certresolver=le"
