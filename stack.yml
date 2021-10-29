@@ -17,7 +17,8 @@ services:
       labels:
         - "traefik.http.services.syxra.loadbalancer.server.port=80"
         - "traefik.enable=true"
-        
+        - "traefik.constraint-label=traefik-public"
+
         - "traefik.http.routers.syxra-http.rule=Host(`syxra.cz`)"
         - "traefik.http.routers.syxra-http.entrypoints=http"
         - "traefik.http.routers.syxra-http.middlewares=https-redirect"
