@@ -5,7 +5,7 @@ services:
   web:
     image: suculent/syxracz
     ports:
-      - 8080:80
+      - 80
     deploy:
       resources:
         reservations:
@@ -15,15 +15,15 @@ services:
           cpus: '0.2'
           memory: 32M
       labels:
-        - "traefik.http.services.syxra.loadbalancer.server.port=8080"
+        - "traefik.http.services.syxra.loadbalancer.server.port=80"
         - "traefik.enable=true"
         - "traefik.constraint-label=traefik-public"
 
-        - "traefik.http.routers.syxra-http.rule=Host(`syxra.cz`)"
+        - "traefik.http.routers.syxra-http.rule="HostRegexp:{subdomain:.*}.syxra.cz"
         - "traefik.http.routers.syxra-http.entrypoints=http"
         - "traefik.http.routers.syxra-http.middlewares=https-redirect"
 
-        - "traefik.http.routers.syxra-https.rule=Host(`syxra.cz`)"
+        - "traefik.http.routers.syxra-https.rule="HostRegexp:{subdomain:.*}.syxra.cz"
         - "traefik.http.routers.syxra-https.entrypoints=https"
         - "traefik.http.routers.syxra-https.tls=true"
         - "traefik.http.routers.syxra-https.tls.certresolver=le"
