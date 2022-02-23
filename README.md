@@ -4,8 +4,9 @@ This is an example of how I deploy static sites on my cloud these days. The clou
 
 ## [Re]deployment
 
-  git pull
-  docker build -t suculent/syxracz .
-  docker stack deploy -c ./stack.yml syxra-cz
-
+```
+ git pull && \
+ docker build -t suculent/syxracz . && \
+ docker stack deploy -c ./stack.yml syxra-cz
+```
 	
