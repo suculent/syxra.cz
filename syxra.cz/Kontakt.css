@@ -2,12 +2,16 @@
   min-height: 168px;
 }
 
+.u-section-1 .u-text-1 {
+  margin: 18px auto 0;
+}
+
 .u-section-1 .u-social-icons-1 {
   height: 48px;
   min-height: 16px;
   width: 164px;
   min-width: 68px;
-  margin: 60px auto;
+  margin: 18px auto 60px;
 }
 
 .u-section-1 .u-icon-1 {
